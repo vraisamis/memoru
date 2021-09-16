@@ -1,8 +1,8 @@
-mod command;
+mod options;
 
 use clap::Clap;
 
-use command::{Command, Opts};
+use options::{Command, Opts};
 
 fn main() {
     let opts: Opts = Opts::parse();
