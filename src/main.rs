@@ -1,30 +1,8 @@
-use clap::{AppSettings, Clap};
+mod command;
 
-#[derive(Clap)]
-#[clap(setting = AppSettings::ColoredHelp)]
-struct Opts {
-    #[clap(subcommand)]
-    command: Command,
-}
+use clap::Clap;
 
-#[derive(Clap)]
-enum Command {
-    New(New),
-}
-
-#[derive(Clap)]
-struct New {
-    #[clap(short, long)]
-    title: Option<String>,
-}
-
-impl New {
-    fn run(&self, opts: &Opts) {
-        if let Some(title) = &self.title {
-            println!("title is '{}'", title);
-        }
-    }
-}
+use command::{Command, Opts};
 
 fn main() {
     let opts: Opts = Opts::parse();
