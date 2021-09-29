@@ -1,5 +1,6 @@
 use clap::{AppSettings, Clap};
 
+mod edit;
 mod new;
 
 #[derive(Clap)]
@@ -12,4 +13,5 @@ pub struct Opts {
 #[derive(Clap)]
 pub enum Command {
     New(new::New),
+    Edit(edit::Edit),
 }

@@ -6,10 +6,10 @@ use chrono::Local;
 use clap::Clap;
 
 use super::Opts;
+use crate::util::{get_editor, open_editor};
 
 #[derive(Clap)]
 pub struct New {
-    // #[clap(short, long)]
     title: Option<String>,
 }
 
@@ -34,8 +34,12 @@ impl New {
         dbg!(&local);
 
         let filename = format!("{}-{}.md", local, title);
-        let mut file = File::create(filename)?;
+        let mut file = File::create(&filename)?;
         file.write_all(format!("# {}", title).as_bytes())?;
+
+        // optsでeditorを受け取れるようにする
+        let editor = get_editor();
+        open_editor(editor, &filename)?;
         Ok(())
     }
 }

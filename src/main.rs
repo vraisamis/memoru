@@ -1,4 +1,5 @@
 mod options;
+mod util;
 
 use std::sync::Mutex;
 
@@ -17,6 +18,9 @@ fn main() -> Result<()> {
     match &opts.command {
         Command::New(new) => {
             new.run(&opts)?;
+        }
+        Command::Edit(edit) => {
+            edit.run(&opts)?;
         }
     };
     Ok(())
